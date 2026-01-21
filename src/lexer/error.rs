@@ -16,5 +16,18 @@ enum LexerError {
 
         #[label(primary, "invalid directive here")]
         span: SourceSpan
+    },
+
+    #[error("date is not formatted according to the ISO 8601 standard")]
+    #[diagnostic(
+        help("modify the date so it uses the 'YYYY-MM-DD' format"),
+        code("geist::invalid_date"),
+        severity(Error)
+    )]
+    InvalidDateError {
+        date: String,
+
+        #[label(primary, "invalid date here")]
+        span: SourceSpan
     }
 }
